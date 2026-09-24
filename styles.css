@@ -1,0 +1,905 @@
+/* ==========================================================================
+   ÍNDICE DESTE ARQUIVO
+   1. Variáveis de design (cores, fontes, espaçamentos)
+   2. Reset básico
+   3. Utilitários (container, grid, botões, tags)
+   4. Cabeçalho e menu
+   5. Hero
+   6. Serviços
+   7. Projetos (carrossel de imagens)
+   8. Como funciona (processo)
+   9. Diferenciais
+   10. Perguntas frequentes (FAQ)
+   11. Contato
+   12. Rodapé
+   13. Acessibilidade (foco de teclado e "reduzir movimento")
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS DE DESIGN
+   Paleta "Pantervil Systems": tons escuros de azul/chumbo com um azul neon
+   de destaque. Tudo que se repete pela página fica centralizado aqui —
+   quer trocar a cor de destaque do site inteiro? Mude só a linha
+   --color-accent abaixo.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Cores base da paleta que você pediu */
+  --color-midnight: #111e30;   /* Azul Meia-Noite — cor principal, fundo padrão */
+  --color-charcoal: #1c2833;   /* Cinza Chumbo Escuro — fundo alternado / sombras */
+  --color-surface: #16233a;    /* tom intermediário, usado nos "cartões" e no cabeçalho */
+  --color-neon: #00d2ff;       /* Azul Tecnológico Neon — cor de destaque principal */
+  --color-metal: #2a80b9;      /* Azul Metálico Claro — destaque secundário */
+  --color-cyan-soft: #48c9b0;  /* Azul Ciano Suave — rótulos e subtítulo "SYSTEMS" */
+  --color-ice: #ecf0f1;        /* Branco Gelo — texto principal sobre fundo escuro */
+
+  /* Papéis semânticos (o resto do CSS usa estes nomes, não as cores acima
+     diretamente — assim, se um dia você quiser reorganizar a paleta, só
+     precisa mexer aqui) */
+  --color-bg: var(--color-midnight);
+  --color-bg-alt: var(--color-charcoal);
+  --color-text: var(--color-ice);
+  --color-text-muted: #9fb0be;
+  --color-border: rgba(72, 156, 201, 0.28);
+  --color-border-strong: rgba(0, 210, 255, 0.55);
+  --color-accent: var(--color-neon);
+  --color-accent-ink: #071019;  /* texto escuro usado EM CIMA da cor de destaque */
+  --color-label: var(--color-cyan-soft);
+
+  /* Tipografia */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Espaçamentos e formas reutilizados */
+  --radius: 6px;
+  --radius-lg: 12px;
+  --container-width: 1160px;
+  --container-width-narrow: 800px;
+  --header-height: 76px;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. RESET BÁSICO
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. UTILITÁRIOS
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+}
+
+.container--narrow {
+  max-width: var(--container-width-narrow);
+}
+
+.section {
+  padding-block: clamp(56px, 8vw, 96px);
+}
+
+.section--alt {
+  background: var(--color-bg-alt);
+}
+
+.section--dark {
+  background: var(--color-charcoal);
+  padding-block: clamp(64px, 10vw, 120px);
+  border-top: 1px solid var(--color-border-strong);
+  box-shadow: 0 -40px 80px -60px rgba(0, 210, 255, 0.35) inset;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-label);
+  margin-bottom: 14px;
+}
+
+.eyebrow--center {
+  text-align: center;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.6vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  max-width: 620px;
+  margin-bottom: 44px;
+  color: var(--color-text);
+}
+
+.section__title--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 28px;
+}
+
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+
+/* Botões: uma classe base (.btn) + modificadores de estilo */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius);
+  padding: 15px 26px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 1.5px solid transparent;
+  transition: opacity 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  box-shadow: 0 0 0 rgba(0, 210, 255, 0);
+}
+
+.btn--primary:hover {
+  box-shadow: 0 0 24px rgba(0, 210, 255, 0.55);
+}
+
+.btn--outline {
+  border-color: rgba(236, 240, 241, 0.45);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.btn--outline:hover {
+  border-color: var(--color-accent);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+
+/* --------------------------------------------------------------------------
+   4. CABEÇALHO E MENU
+   -------------------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(17, 30, 48, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Logo em duas linhas: "PANTERVIL" em cima, "SYSTEMS" pequeno embaixo */
+.logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.logo__sub {
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--color-label);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+.header__cta {
+  padding: 9px 18px;
+  font-size: 14px;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--color-text);
+  padding: 0;
+}
+
+.icon-close { display: none; }
+.header.is-open .icon-menu { display: none; }
+.header.is-open .icon-close { display: block; }
+
+.menu-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px clamp(20px, 5vw, 48px) 20px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-midnight);
+}
+
+.header.is-open .menu-mobile {
+  display: flex;
+}
+
+.menu-mobile a {
+  padding: 12px 4px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.menu-mobile__cta {
+  margin-top: 10px;
+  justify-content: center;
+  border-bottom: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. HERO
+   -------------------------------------------------------------------------- */
+.hero {
+  padding-top: clamp(56px, 9vw, 108px);
+  padding-bottom: clamp(40px, 6vw, 72px);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5.6vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-text);
+}
+
+.hero__subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin-bottom: 34px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* Ilustração decorativa (mockup de navegador feito só com CSS) */
+.hero__mock {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 24px 60px -30px rgba(0, 210, 255, 0.25);
+}
+
+.hero__mock-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px 14px;
+}
+
+.hero__mock-bar span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--color-metal);
+}
+
+.hero__mock-bar-line {
+  flex-grow: 1;
+  height: 22px;
+  margin-left: 10px;
+  background: var(--color-midnight);
+  border-radius: 5px;
+}
+
+.hero__mock-screen {
+  background: var(--color-midnight);
+  border-radius: 8px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hero__mock-block {
+  border-radius: 4px;
+}
+
+.hero__mock-block--accent {
+  background: var(--color-accent);
+}
+
+.hero__mock-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.hero__mock-btn {
+  width: 96px;
+  height: 34px;
+  border-radius: 6px;
+}
+
+.hero__mock-btn--accent {
+  background: var(--color-accent);
+}
+
+.hero__mock-btn--outline {
+  border: 1px solid rgba(236, 240, 241, 0.35);
+}
+
+.hero__mock-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.hero__mock-cards div {
+  height: 56px;
+  border-radius: 6px;
+  background: rgba(0, 210, 255, 0.1);
+}
+
+.hero__segments {
+  margin-top: clamp(48px, 7vw, 80px);
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.hero__segments-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. SERVIÇOS
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: 0 0 30px -12px rgba(0, 210, 255, 0.4);
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--color-text);
+}
+
+.card__text {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.check-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1.8px solid var(--color-accent);
+  border-top: none;
+  border-right: none;
+  transform: rotate(-45deg) translate(1px, -2px);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. PROJETOS (CARROSSEL DE IMAGENS)
+   Estrutura: .carousel > .carousel__track (some para os lados) > vários
+   .carousel__slide (cada um com uma imagem). Os botões de seta e os pontinhos
+   ficam por cima, e quem controla tudo é o initCarousel() no script.js.
+   -------------------------------------------------------------------------- */
+.carousel {
+  position: relative;
+}
+
+.carousel__viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.carousel__track {
+  display: flex;
+  /* a transição do "deslizar" entre slides acontece aqui */
+  transition: transform 0.45s ease;
+}
+
+.carousel__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.carousel__slide img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--color-surface);
+}
+
+.carousel__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 4px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.carousel__caption span:last-child {
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* setas de navegação */
+.carousel__arrow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+}
+
+.carousel__arrow:hover {
+  color: var(--color-accent);
+}
+
+.carousel__arrow--prev { left: 0; }
+.carousel__arrow--next { right: 0; }
+
+.carousel__arrow svg {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+/* pontinhos (indicadores) */
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.carousel__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-border);
+  padding: 0;
+}
+
+.carousel__dot.is-active {
+  background: var(--color-accent);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.7);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. COMO FUNCIONA (processo)
+   -------------------------------------------------------------------------- */
+.step__number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--color-label);
+  margin-bottom: 14px;
+}
+
+.step__title {
+  font-size: 16.5px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.step__text {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. DIFERENCIAIS
+   -------------------------------------------------------------------------- */
+.diff-grid {
+  gap: 0 24px;
+}
+
+.diff {
+  padding-block: 26px;
+  border-top: 1px solid var(--color-border);
+}
+
+.diff--bordered {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.diff__title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-text);
+}
+
+.diff__text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. PERGUNTAS FREQUENTES (FAQ)
+   -------------------------------------------------------------------------- */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item:last-child {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 4px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.faq-item__icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  color: var(--color-text);
+}
+
+.faq-item.is-open .faq-item__icon {
+  transform: rotate(180deg);
+  color: var(--color-accent);
+}
+
+.faq-item__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.faq-item__answer p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  padding: 0 32px 22px 4px;
+}
+
+.faq-item.is-open .faq-item__answer {
+  max-height: 300px;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. CONTATO
+   -------------------------------------------------------------------------- */
+.contact {
+  text-align: center;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 auto 18px;
+  max-width: 640px;
+  color: var(--color-text);
+  text-shadow: 0 0 40px rgba(0, 210, 255, 0.25);
+}
+
+.contact__text {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 480px;
+  margin: 0 auto 40px;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 44px;
+}
+
+.contact__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   12. RODAPÉ
+   -------------------------------------------------------------------------- */
+.footer {
+  background: var(--color-midnight);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__inner {
+  padding-block: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.footer__logo-sub {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--color-label);
+  margin-left: 6px;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer__links a:hover {
+  color: var(--color-accent);
+}
+
+.footer__links a {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.footer__copy {
+  font-size: 13px;
+}
+
+
+/* ==========================================================================
+   RESPONSIVIDADE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav-links,
+  .header__cta {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid--2 {
+    grid-template-columns: 1fr;
+  }
+  .diff-grid {
+    gap: 0;
+  }
+  .carousel__arrow {
+    width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ==========================================================================
+   13. ACESSIBILIDADE
+   ========================================================================== */
+
+:focus-visible {
+  outline: 2.5px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .faq-item__icon,
+  .faq-item__answer,
+  .btn,
+  .carousel__track {
+    transition: none;
+  }
+}

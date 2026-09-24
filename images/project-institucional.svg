@@ -1,0 +1,60 @@
+<!--
+  Mockup ilustrativo de um "site institucional", desenhado só com formas
+  (sem foto nenhuma). Faz parte do carrossel de projetos da landing page.
+  Paleta usada: Midnight #111E30, Surface #16233A, Neon #00D2FF, Metal #2A80B9,
+  Cyan suave #48C9B0, Ice #ECF0F1.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" role="img" aria-label="Ilustração de um site institucional">
+  <rect width="960" height="600" rx="20" fill="#16233A"/>
+
+  <!-- barra do "navegador" -->
+  <circle cx="40" cy="40" r="6" fill="#2A80B9"/>
+  <circle cx="60" cy="40" r="6" fill="#2A80B9"/>
+  <circle cx="80" cy="40" r="6" fill="#2A80B9"/>
+  <rect x="110" y="30" width="500" height="20" rx="6" fill="#111E30"/>
+
+  <!-- tela -->
+  <rect x="32" y="70" width="896" height="498" rx="12" fill="#111E30"/>
+
+  <!-- linhas de circuito decorativas -->
+  <g stroke="#00D2FF" stroke-width="1.5" opacity="0.25" fill="none">
+    <path d="M32 500 H180 L210 470 H420"/>
+    <path d="M928 150 H820 L790 180 V320"/>
+    <circle cx="420" cy="470" r="4" fill="#00D2FF" stroke="none"/>
+    <circle cx="790" cy="320" r="4" fill="#00D2FF" stroke="none"/>
+  </g>
+
+  <!-- nav da tela -->
+  <rect x="72" y="104" width="90" height="14" rx="4" fill="#48C9B0"/>
+  <rect x="740" y="100" width="120" height="24" rx="6" fill="#00D2FF"/>
+  <rect x="600" y="104" width="60" height="14" rx="4" fill="rgba(236,240,241,0.4)"/>
+  <rect x="680" y="104" width="50" height="14" rx="4" fill="rgba(236,240,241,0.4)"/>
+
+  <!-- hero da tela -->
+  <rect x="72" y="180" width="330" height="26" rx="6" fill="#ECF0F1"/>
+  <rect x="72" y="220" width="380" height="26" rx="6" fill="#ECF0F1"/>
+  <rect x="72" y="266" width="300" height="14" rx="4" fill="rgba(236,240,241,0.45)"/>
+  <rect x="72" y="286" width="260" height="14" rx="4" fill="rgba(236,240,241,0.45)"/>
+  <rect x="72" y="326" width="150" height="42" rx="8" fill="#00D2FF"/>
+
+  <rect x="520" y="170" width="368" height="230" rx="12" fill="#1C2833"/>
+  <rect x="552" y="202" width="120" height="120" rx="10" fill="#2A80B9" opacity="0.7"/>
+  <rect x="688" y="202" width="168" height="56" rx="8" fill="rgba(236,240,241,0.15)"/>
+  <rect x="688" y="270" width="168" height="14" rx="4" fill="rgba(236,240,241,0.3)"/>
+  <rect x="688" y="292" width="120" height="14" rx="4" fill="rgba(236,240,241,0.3)"/>
+
+  <!-- grade de destaques -->
+  <g>
+    <rect x="72" y="430" width="256" height="120" rx="10" fill="#1C2833"/>
+    <rect x="96" y="454" width="40" height="40" rx="8" fill="#48C9B0"/>
+    <rect x="96" y="508" width="140" height="12" rx="4" fill="rgba(236,240,241,0.5)"/>
+
+    <rect x="352" y="430" width="256" height="120" rx="10" fill="#1C2833"/>
+    <rect x="376" y="454" width="40" height="40" rx="8" fill="#00D2FF"/>
+    <rect x="376" y="508" width="140" height="12" rx="4" fill="rgba(236,240,241,0.5)"/>
+
+    <rect x="632" y="430" width="256" height="120" rx="10" fill="#1C2833"/>
+    <rect x="656" y="454" width="40" height="40" rx="8" fill="#2A80B9"/>
+    <rect x="656" y="508" width="140" height="12" rx="4" fill="rgba(236,240,241,0.5)"/>
+  </g>
+</svg>

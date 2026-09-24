@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantervil Systems — Sites, Landing Pages e Sistemas sob Medida</title>
+  <meta name="description" content="Sites institucionais, landing pages de alta conversão e sistemas sob medida para o que o seu negócio realmente precisa.">
+
+  <!-- Fontes do Google: Space Grotesk para títulos, IBM Plex Sans para o texto do corpo. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Nosso CSS. Fica em um arquivo separado para ficar fácil de achar e editar estilos. -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ======================================================================
+       CABEÇALHO
+       Fica "grudado" no topo da página (position: sticky, ver styles.css).
+       Em telas pequenas, o menu normal some e aparece o botão de hambúrguer,
+       que é controlado pelo script.js.
+  ======================================================================= -->
+  <header class="header" id="cabecalho">
+    <div class="container header__inner">
+      <a href="#topo" class="logo">
+        <span class="logo__name">PANTERVIL</span>
+        <span class="logo__sub">SYSTEMS</span>
+      </a>
+
+      <!-- Menu de navegação para telas grandes. Escondido no mobile via CSS. -->
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#faq">Perguntas frequentes</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <!-- Botão de CTA do cabeçalho, também escondido no mobile. -->
+      <a href="#contato" class="btn btn--outline header__cta">Pedir orçamento</a>
+
+      <!-- Botão de hambúrguer, só aparece no mobile (ver media query no CSS). -->
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="menuMobile"
+      >
+        <!-- Ícone de "3 linhas" (menu fechado) -->
+        <svg class="icon icon-menu" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <!-- Ícone de "X" (menu aberto) -->
+        <svg class="icon icon-close" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Painel do menu mobile. Fica escondido (display:none) até o JS
+         adicionar a classe "is-open" no <header>. -->
+    <nav class="menu-mobile" id="menuMobile" aria-label="Navegação mobile">
+      <a href="#servicos">Serviços</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#faq">Perguntas frequentes</a>
+      <a href="#contato">Contato</a>
+      <a href="#contato" class="btn btn--primary menu-mobile__cta">Pedir orçamento</a>
+    </nav>
+  </header>
+
+  <main id="topo">
+
+    <!-- ====================================================================
+         HERO (primeira seção, "acima da dobra")
+    ===================================================================== -->
+    <section class="section hero">
+      <div class="container hero__grid">
+
+        <div class="hero__content">
+          <p class="eyebrow">Desenvolvimento web &amp; sistemas sob medida</p>
+          <h1 class="hero__title">
+            Seu negócio merece um site que vende, não só que existe.
+          </h1>
+          <p class="hero__subtitle">
+            Sites institucionais, landing pages de alta conversão e sistemas sob
+            medida — construídos para o que o seu negócio realmente precisa,
+            sem enrolação e sem modelo pronto.
+          </p>
+          <div class="hero__actions">
+            <a href="#contato" class="btn btn--primary">
+              Pedir orçamento
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3.5 8H12.5M8.5 3.5L13 8L8.5 12.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#processo" class="btn btn--outline">Ver como funciona</a>
+          </div>
+        </div>
+
+        <!-- Ilustração decorativa (feita só com HTML/CSS, sem imagem nenhuma). -->
+        <div class="hero__mock" aria-hidden="true">
+          <div class="hero__mock-bar">
+            <span></span><span></span><span></span>
+            <div class="hero__mock-bar-line"></div>
+          </div>
+          <div class="hero__mock-screen">
+            <div class="hero__mock-block hero__mock-block--accent" style="width: 46%; height: 14px;"></div>
+            <div class="hero__mock-block" style="width: 78%; height: 22px; background: rgba(255,255,255,.9);"></div>
+            <div class="hero__mock-block" style="width: 60%; height: 10px; background: rgba(255,255,255,.35);"></div>
+            <div class="hero__mock-buttons">
+              <div class="hero__mock-btn hero__mock-btn--accent"></div>
+              <div class="hero__mock-btn hero__mock-btn--outline"></div>
+            </div>
+            <div class="hero__mock-cards">
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de segmentos atendidos -->
+      <div class="container hero__segments">
+        <p class="hero__segments-label">Para quem já entendeu que presença digital é investimento:</p>
+        <div class="tag-list">
+          <span class="tag">Imobiliárias</span>
+          <span class="tag">Clínicas e consultórios</span>
+          <span class="tag">Academias e estúdios</span>
+          <span class="tag">Comércio local</span>
+          <span class="tag">Profissionais autônomos</span>
+          <span class="tag">Infoprodutos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SERVIÇOS
+    ===================================================================== -->
+    <section class="section" id="servicos">
+      <div class="container">
+        <p class="eyebrow">O que fazemos</p>
+        <h2 class="section__title">Três formas de colocar seu negócio no digital certo</h2>
+
+        <div class="grid grid--3">
+          <article class="card">
+            <h3 class="card__title">Sites institucionais</h3>
+            <p class="card__text">
+              Um site profissional que apresenta sua empresa, gera confiança e
+              funciona como cartão de visitas 24 horas por dia.
+            </p>
+            <ul class="check-list">
+              <li>Design exclusivo, sem template</li>
+              <li>Otimizado para o Google</li>
+              <li>Responsivo em qualquer tela</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Landing pages</h3>
+            <p class="card__text">
+              Páginas focadas em um único objetivo: converter visitante em
+              cliente. Ideais para campanhas, lançamentos e captação.
+            </p>
+            <ul class="check-list">
+              <li>Foco total em conversão</li>
+              <li>Integração com WhatsApp</li>
+              <li>Pronta para rodar anúncios</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Sistemas sob medida</h3>
+            <p class="card__text">
+              Ferramentas construídas para o problema específico do seu
+              negócio: agendamento, controle de clientes, catálogo, o que for
+              preciso.
+            </p>
+            <ul class="check-list">
+              <li>Feito sob medida, do zero</li>
+              <li>Painel simples de usar</li>
+              <li>Cresce junto com você</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PROJETOS (carrossel de imagens)
+         Estrutura: cada ".carousel__slide" tem uma imagem + legenda. O
+         script.js controla qual slide aparece, as setas e os pontinhos.
+         hidden="" nos slides que não são o primeiro é só o estado inicial
+         (o JS assume o controle assim que a página carrega).
+    ===================================================================== -->
+    <section class="section section--alt" id="projetos">
+      <div class="container">
+        <p class="eyebrow">Projetos</p>
+        <h2 class="section__title">Um pouco do tipo de entrega</h2>
+        <p style="max-width: 560px; margin: -24px 0 40px; color: var(--color-text-muted); font-size: 15.5px; line-height: 1.6;">
+          Modelos ilustrativos dos formatos que a gente entrega — troque pelas
+          telas reais dos seus próprios projetos quando tiver.
+        </p>
+
+        <div class="carousel" id="carousel">
+          <div class="carousel__viewport">
+            <div class="carousel__track" id="carouselTrack">
+              <!-- "data-title" é só o texto que aparece na legenda embaixo do
+                   carrossel. Para adicionar um projeto novo, copie um destes
+                   blocos, troque a imagem, o "alt" e o "data-title". -->
+              <div class="carousel__slide" data-title="Site institucional">
+                <img src="images/project-institucional.svg" alt="Modelo de site institucional, com menu, seção de destaque e cartões de conteúdo.">
+              </div>
+              <div class="carousel__slide" data-title="Landing page">
+                <img src="images/project-landing.svg" alt="Modelo de landing page centralizada, com chamada principal e botão de ação em destaque.">
+              </div>
+              <div class="carousel__slide" data-title="Painel de sistema">
+                <img src="images/project-sistema.svg" alt="Modelo de painel de sistema, com menu lateral, indicadores e gráfico.">
+              </div>
+              <div class="carousel__slide" data-title="Loja virtual">
+                <img src="images/project-loja.svg" alt="Modelo de loja virtual, com barra de busca e grade de produtos.">
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="carousel__arrow carousel__arrow--prev" id="carouselPrev" aria-label="Projeto anterior">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <path d="M13.5 5.5L7.5 11L13.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" class="carousel__arrow carousel__arrow--next" id="carouselNext" aria-label="Próximo projeto">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+              <path d="M8.5 5.5L14.5 11L8.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <p class="carousel__caption">
+            <span id="carouselTitle">Site institucional</span>
+            <span id="carouselCount">1 / 4</span>
+          </p>
+
+          <div class="carousel__dots" id="carouselDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         COMO FUNCIONA (processo em 4 passos)
+    ===================================================================== -->
+    <section class="section" id="processo">
+      <div class="container">
+        <p class="eyebrow">Como funciona</p>
+        <h2 class="section__title">Do briefing à entrega, sem mistério</h2>
+
+        <div class="grid grid--4">
+          <div class="step">
+            <span class="step__number">01</span>
+            <h3 class="step__title">Conversa inicial</h3>
+            <p class="step__text">Entendemos o que você precisa e como o seu negócio funciona.</p>
+          </div>
+          <div class="step">
+            <span class="step__number">02</span>
+            <h3 class="step__title">Proposta e prazo</h3>
+            <p class="step__text">Você recebe um escopo claro, com prazo e investimento definidos.</p>
+          </div>
+          <div class="step">
+            <span class="step__number">03</span>
+            <h3 class="step__title">Desenvolvimento</h3>
+            <p class="step__text">Construímos o site ou sistema com atualizações no caminho.</p>
+          </div>
+          <div class="step">
+            <span class="step__number">04</span>
+            <h3 class="step__title">Entrega e suporte</h3>
+            <p class="step__text">Site no ar, sistema funcionando, e suporte para o que vier depois.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         DIFERENCIAIS
+    ===================================================================== -->
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Por que fechar com a gente</p>
+        <h2 class="section__title">Menos genérico, mais resultado</h2>
+
+        <div class="grid grid--2 diff-grid">
+          <div class="diff">
+            <h3 class="diff__title">Feito sob medida</h3>
+            <p class="diff__text">Nada de templates genéricos. Cada projeto é pensado para o seu negócio específico.</p>
+          </div>
+          <div class="diff">
+            <h3 class="diff__title">Comunicação direta</h3>
+            <p class="diff__text">Você fala com quem desenvolve o projeto, sem intermediários no meio do caminho.</p>
+          </div>
+          <div class="diff diff--bordered">
+            <h3 class="diff__title">Pensado para conversão</h3>
+            <p class="diff__text">Design bonito é bom. Design que gera cliente e resultado é melhor ainda.</p>
+          </div>
+          <div class="diff diff--bordered">
+            <h3 class="diff__title">Suporte depois da entrega</h3>
+            <p class="diff__text">O projeto não termina quando o site vai ao ar. Ajuste, evolução e manutenção fazem parte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         PERGUNTAS FREQUENTES (accordion controlado pelo script.js)
+    ===================================================================== -->
+    <section class="section section--alt" id="faq">
+      <div class="container container--narrow">
+        <p class="eyebrow eyebrow--center">Perguntas frequentes</p>
+        <h2 class="section__title section__title--center">Ainda com dúvidas?</h2>
+
+        <!-- Cada .faq-item é um par pergunta/resposta independente.
+             O script.js procura todos os elementos com essa classe,
+             então para adicionar uma pergunta nova basta copiar um
+             bloco inteiro e mudar o texto — não precisa mexer no JS. -->
+        <div class="faq-list">
+          <div class="faq-item">
+            <button type="button" class="faq-item__question" aria-expanded="false">
+              <span>Quanto tempo leva para ficar pronto?</span>
+              <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-item__answer">
+              <p>Depende do escopo. Uma landing page costuma levar poucos dias; sites institucionais e sistemas sob medida têm prazo combinado na proposta.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-item__question" aria-expanded="false">
+              <span>Preciso ter o conteúdo (textos e fotos) pronto?</span>
+              <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-item__answer">
+              <p>Não necessariamente. A gente te ajuda a organizar o conteúdo ao longo do processo, com base no que você já tem.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-item__question" aria-expanded="false">
+              <span>Como funciona o pagamento?</span>
+              <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-item__answer">
+              <p>Definimos junto com você na proposta, geralmente dividido em etapas conforme o projeto avança.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-item__question" aria-expanded="false">
+              <span>Vocês dão suporte depois que o site está no ar?</span>
+              <svg class="faq-item__icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 7L9 11.5L13.5 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-item__answer">
+              <p>Sim. Ajustes, manutenção e evolução do projeto fazem parte do que oferecemos depois da entrega.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CONTATO (seção final, fundo escuro para destacar)
+    ===================================================================== -->
+    <section class="section section--dark" id="contato">
+      <div class="container container--narrow contact">
+        <p class="eyebrow eyebrow--on-dark">Vamos começar</p>
+        <h2 class="contact__title">Conta pra gente o que você precisa</h2>
+        <p class="contact__text">Chama no WhatsApp ou manda um e-mail. Retorno rápido, sem enrolação.</p>
+
+        <div class="contact__actions">
+          <!-- Troque o número abaixo (formato: 55 + DDD + número, só dígitos) -->
+          <a href="https://wa.me/5500000000000" class="btn btn--primary">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9C1.5 10.37 1.87 11.66 2.5 12.77L1.5 16.5L5.35 15.53C6.42 16.12 7.67 16.5 9 16.5C13.14 16.5 16.5 13.14 16.5 9C16.5 4.86 13.14 1.5 9 1.5Z" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M6.3 6.2C6.45 5.9 6.65 5.9 6.8 5.9C6.95 5.9 7.1 5.9 7.25 5.95C7.4 6 7.55 6.05 7.7 6.4C7.85 6.75 8.2 7.6 8.25 7.7C8.3 7.8 8.3 7.9 8.25 8C8.2 8.15 8.15 8.2 8.05 8.35C7.95 8.45 7.85 8.6 7.75 8.7C7.65 8.8 7.55 8.9 7.65 9.1C7.8 9.35 8.2 10 8.8 10.5C9.55 11.15 10.15 11.35 10.4 11.45C10.6 11.55 10.75 11.5 10.9 11.4C11.05 11.25 11.4 10.85 11.55 10.65C11.7 10.5 11.85 10.5 12 10.6C12.15 10.65 13 11.1 13.15 11.2C13.35 11.3 13.45 11.35 13.5 11.45C13.55 11.6 13.55 11.95 13.4 12.35C13.25 12.75 12.55 13.15 12.2 13.2C11.9 13.25 11.5 13.3 10.15 12.75C8.5 12.1 7.4 10.55 7.3 10.4C7.2 10.3 6.5 9.4 6.5 8.4C6.5 7.4 7 6.9 7.2 6.7L6.3 6.2Z" fill="currentColor"/>
+            </svg>
+            Chamar no WhatsApp
+          </a>
+          <a href="mailto:contato@seudominio.com" class="btn btn--outline btn--outline-dark">Enviar e-mail</a>
+        </div>
+
+        <div class="contact__meta">
+          <span>[Seu WhatsApp / telefone]</span>
+          <span aria-hidden="true">·</span>
+          <span>[seuemail@exemplo.com]</span>
+          <span aria-hidden="true">·</span>
+          <span>Joinville, SC</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================================================================
+       RODAPÉ
+  ======================================================================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__logo">PANTERVIL<span class="footer__logo-sub">SYSTEMS</span></span>
+      <nav class="footer__links" aria-label="Rodapé">
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <span class="footer__copy">© 2026 Pantervil Systems. Todos os direitos reservados.</span>
+    </div>
+  </footer>
+
+  <!-- Nosso JavaScript. Carregado com "defer" para não travar a renderização
+       da página enquanto o navegador baixa o arquivo. -->
+  <script src="script.js" defer></script>
+</body>
+</html>
